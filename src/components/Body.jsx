@@ -8,8 +8,8 @@ function Body() {
     const [searchTerm, SetSearchTerm] = useState('');
     const [searchResult, SetSearchResult] = useState([]);
     useEffect(() => {
-        axios.get('https://api.imgflip.com/get_memes').then((Response) => {
-            setAPI(Response.data.data.memes);
+        axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=bb5e381f440043d3acf803f0431e5c32').then((Response) => {
+            setAPI(Response.data.articles);
         },
         [])
     })
@@ -46,13 +46,13 @@ function Body() {
                             searchResult.map(item=>(
                             <Col style={{ marginBottom: '20px' }}>
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src={item.url} />
+                                <Card.Img variant="top" src={item.urlToImage} />
                                 <Card.Body>
-                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Title>{item.title}</Card.Title>
                                     <Card.Text>
-                                    {item.id}
+                                    {item.description}
                                     </Card.Text>
-                                    <Button href={item.url} target="_blank" variant="primary">Go somewhere</Button>
+                                    <Button href={item.url} target="_blank" variant="primary">Read More</Button>
                                 </Card.Body>
                             </Card>
                             </Col>
@@ -61,13 +61,13 @@ function Body() {
                             fetchAPI.map(item=>(
                                 <Col style={{ marginBottom: '20px' }}>
                                 <Card style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src={item.url} />
+                                    <Card.Img variant="top" src={item.urlToImage} />
                                     <Card.Body>
-                                        <Card.Title>{item.name}</Card.Title>
+                                        <Card.Title>{item.title}</Card.Title>
                                         <Card.Text>
-                                        {item.id}
+                                        {item.description}
                                         </Card.Text>
-                                        <Button href={item.url} target="_blank" variant="primary">Go somewhere</Button>
+                                        <Button href={item.url} target="_blank" variant="primary">Read More</Button>
                                     </Card.Body>
                                 </Card>
                                 </Col>
