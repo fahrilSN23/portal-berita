@@ -10,8 +10,7 @@ function Body() {
     useEffect(() => {
         axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=bb5e381f440043d3acf803f0431e5c32').then((Response) => {
             setAPI(Response.data.articles);
-        },
-        [])
+        },[fetchAPI])
     })
 
     const searchData = (value) => {
