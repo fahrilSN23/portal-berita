@@ -4,10 +4,12 @@ import Body from "./components/Body";
 
 function App() {
   return (
-    <div className="App">
-      <Navbrand />
-      <Body />
-    </div>
+    <>
+      <div className="App">
+        <Navbrand />
+        <Body />
+      </div>
+    </>
   );
 }
 

@@ -5,22 +5,24 @@ import { useEffect, useState } from "react"
 
 function Body() {
     const [fetchAPI, setAPI] = useState([]);
+    const [filterAPI, setFilterAPI] = useState([]);
     const [searchTerm, SetSearchTerm] = useState('');
     const [searchResult, SetSearchResult] = useState([]);
     useEffect(() => {
-        axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=bb5e381f440043d3acf803f0431e5c32').then((Response) => {
+        axios.get('https://newsapi.org/v2/top-headlines?country=id&apiKey=8182a972d0904387ad12d261ea43b234').then((Response) => {
             setAPI(Response.data.articles);
         },[fetchAPI])
     })
 
     const searchData = (value) => {
         SetSearchTerm(value);
+        // console.log(value);
 
         if (searchTerm !== '') {
-            const filteredData = fetchAPI.filter((item) => {
-                return Object.values(item).join('').toLowerCase().includes(searchTerm.toLowerCase());
-            })
-            SetSearchResult(filteredData);
+            axios.get('https://newsapi.org/v2/everything?q='+searchTerm+'&apiKey=8182a972d0904387ad12d261ea43b234').then((Response) => {
+                setFilterAPI(Response.data.articles);
+            },[filterAPI])
+            SetSearchResult(filterAPI);
         } else {
             SetSearchResult(fetchAPI);
         }
