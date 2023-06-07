@@ -11,8 +11,12 @@ function Body() {
     useEffect(() => {
         axios.get('https://newsapi.org/v2/top-headlines?country=id&apiKey=8182a972d0904387ad12d261ea43b234').then((Response) => {
             setAPI(Response.data.articles);
-        },[fetchAPI])
+        },[])
     })
+
+    useEffect(() => {
+        SetSearchResult(filterAPI);
+    }, [filterAPI])
 
     const searchData = (value) => {
         SetSearchTerm(value);
@@ -21,8 +25,7 @@ function Body() {
         if (searchTerm !== '') {
             axios.get('https://newsapi.org/v2/everything?q='+searchTerm+'&apiKey=8182a972d0904387ad12d261ea43b234').then((Response) => {
                 setFilterAPI(Response.data.articles);
-            },[filterAPI])
-            SetSearchResult(filterAPI);
+            })
         } else {
             SetSearchResult(fetchAPI);
         }
